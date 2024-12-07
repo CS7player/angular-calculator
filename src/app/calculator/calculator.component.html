@@ -1,0 +1,12 @@
+<div class="box">
+  <input type="text" class="ip" [(ngModel)]="inputText">
+  @for (item of btn_arr; track $index) {
+   <div class="row">
+    @for (text of item; track $index) {
+     <div class="btn" (click)="handler(text)">
+      {{text}}
+     </div>
+    }
+   </div>
+  }
+</div>
