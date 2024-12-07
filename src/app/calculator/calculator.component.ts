@@ -6,24 +6,61 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './calculator.component.html',
-  styleUrl: './calculator.component.css',
+  styleUrls: ['./calculator.component.css'],
 })
-export class CalculatorComponent implements OnInit{
- inputText : string | number = '';
- btn_arr = [['AC','Del','%','/'],[7,8,9,'X'],[4,5,6,'-'],[1,2,3,'+'],['+/-',0,'.','=']];
- ngOnInit() {
-  
+export class CalculatorComponent implements OnInit {
+  inputText: string = '';
+  btn_arr = [['AC','Del','%','/'], ['7','8','9','*'], ['4','5','6','-'], ['1','2','3','+'], ['+/-','0','.','=']];
+  operation_arr = ['+', '-', '*', '/'];
+  private lastWasOperator = false;
+
+  ngOnInit() {}
+
+  constructor() {}
+
+  handler(val: string) {
+   if (val === 'AC') {
+     this.inputText = '';
+     this.lastWasOperator = false;
+   } else if (val === 'Del') {
+     this.inputText = this.inputText.slice(0, -1);
+     this.lastWasOperator = false;
+   } else if (val === '=') {
+     try {
+       this.inputText = this.calculateResult(this.inputText).toString();
+     } catch (error) {
+       this.inputText = 'Error';
+     }
+   } else if (val === '%') {
+     try {
+       this.inputText = this.calculateResult(this.inputText) / 100 + '';
+     } catch (error) {
+       this.inputText = 'Error';
+     }
+   } else if (val === '+/-') {
+     if (this.inputText) {
+       let num = parseFloat(this.inputText);
+       if (!isNaN(num)) {
+         this.inputText = (num * -1).toString(); 
+       }
+     }
+   } else if (this.operation_arr.includes(val)) {
+     if (this.lastWasOperator) {
+       return;
+     }
+     this.inputText += val;
+     this.lastWasOperator = true;
+   } else {
+     this.inputText += val;
+     this.lastWasOperator = false;
+   }
  }
- constructor(){}
- handler(val : number | string){
-  if(val == 'AC'){
-   this.inputText = '';
+ 
+  private calculateResult(expression: string): number {
+    try {
+      return new Function('return ' + expression)();
+    } catch (error) {
+      throw new Error('Invalid Expression');
+    }
   }
-  else if(val == 'Del'){
-   this.inputText = 123;
-  }
-  else{
-   this.inputText = this.inputText+ "" + val;
-  }
- }
 }

@@ -4,7 +4,7 @@
    <div class="row">
     @for (text of item; track $index) {
      <div class="btn" (click)="handler(text)">
-      {{text}}
+      {{text == '*'? 'X': text}}
      </div>
     }
    </div>
