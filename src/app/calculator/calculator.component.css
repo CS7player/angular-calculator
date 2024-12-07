@@ -5,11 +5,11 @@
  border-radius: 0.7rem;
  display: flex;
  flex-direction: column;
- row-gap: 1.4rem;
+ row-gap: 0.7rem;
  background-color: rgb(58, 57, 57);
 }
 .ip{
- width: 94%;
+ width: 20rem;
  height: 4rem;
  margin-right: 0.2rem;
  border-radius: 0.4rem;
