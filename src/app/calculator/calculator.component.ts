@@ -30,6 +30,9 @@ export class CalculatorComponent implements OnInit {
       let result = this.calculateResult(this.inputText).toString();
       if(result == '12102001'){
         this.inputText = 'HBD Sharu ❤️❤️❤️';
+        setTimeout(() => {
+          this.inputText = '12102001';
+        },3000);
       }
       else{
         this.inputText = result;
