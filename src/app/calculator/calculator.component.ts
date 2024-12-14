@@ -27,7 +27,13 @@ export class CalculatorComponent implements OnInit {
      this.lastWasOperator = false;
    } else if (val === '=') {
      try {
-       this.inputText = this.calculateResult(this.inputText).toString();
+      let result = this.calculateResult(this.inputText).toString();
+      if(result == '12102001'){
+        this.inputText = 'HBD Sharu ❤️❤️❤️';
+      }
+      else{
+        this.inputText = result;
+      }
      } catch (error) {
        this.inputText = 'Error';
      }
@@ -51,6 +57,7 @@ export class CalculatorComponent implements OnInit {
      this.inputText += val;
      this.lastWasOperator = true;
    } else {
+    // console.log(123,this,)
      this.inputText += val;
      this.lastWasOperator = false;
    }
