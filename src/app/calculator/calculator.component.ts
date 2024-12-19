@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CalculatorComponent implements OnInit {
   inputText: string = '';
+  is_gift: boolean = false;
   btn_arr = [['AC','Del','%','/'], ['7','8','9','*'], ['4','5','6','-'], ['1','2','3','+'], ['+/-','0','.','=']];
   operation_arr = ['+', '-', '*', '/'];
   private lastWasOperator = false;
@@ -30,9 +31,11 @@ export class CalculatorComponent implements OnInit {
       let result = this.calculateResult(this.inputText).toString();
       if(result == '12102001'){
         this.inputText = 'HBD Sharu ❤️❤️❤️';
+        this.is_gift = true;
         setTimeout(() => {
           this.inputText = '12102001';
-        },3000);
+          this.is_gift = false;
+        },10000);
       }
       else{
         this.inputText = result;

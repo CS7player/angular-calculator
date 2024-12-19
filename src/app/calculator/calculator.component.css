@@ -8,6 +8,7 @@
  flex-direction: column;
  row-gap: 0.7rem;
  background-color: rgb(58, 57, 57);
+ position: relative;
 }
 .ip{
  width: 20rem;
@@ -34,4 +35,30 @@
  padding: 0.4rem;
  background-color: rgb(90, 241, 85);
  border-radius: 20%;
+}
+
+.gift{
+    width: 22rem;
+    height: 12rem;
+    position: absolute;
+    top: 7rem;
+    left: -0.4rem;
+    background-image: url('./../../../public/gift.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0.2rem solid red;
+    border-radius: 1rem;
+    animation: moveBox 7s infinite alternate;
+}
+
+@keyframes moveBox {
+    0% {
+        background-image: url('./../../../public/gift.jpg');
+    }
+    50% {
+        background-image: url('./../../../public/gift2.jpg'); 
+    }
+    100% {
+        background-image: url('./../../../public/gift3.png');
+    }
 }
